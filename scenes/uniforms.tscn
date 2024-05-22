@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8c02wvggptkk"]
+
+[ext_resource type="Shader" path="res://shaders/uniforms.gdshader" id="1_dc4os"]
+[ext_resource type="Script" path="res://scripts/uniforms.gd" id="1_lrhja"]
+[ext_resource type="Texture2D" uid="uid://b7rqfa05aj7c8" path="res://icon.svg" id="2_copti"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_re6ch"]
+shader = ExtResource("1_dc4os")
+shader_parameter/my_float = 2.095
+shader_parameter/my_vector = Vector4(0, 0, 0, 0)
+shader_parameter/my_color = Color(0.332604, 0.728431, 0.544019, 1)
+
+[node name="Uniforms" type="Node2D"]
+script = ExtResource("1_lrhja")
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_re6ch")
+position = Vector2(662, 248)
+texture = ExtResource("2_copti")
