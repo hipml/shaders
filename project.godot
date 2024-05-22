@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="shader"
+run/main_scene="res://scenes/shaders.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_vim/plugin.cfg")
