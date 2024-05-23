@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3okoqvlqt55a"]
+[gd_scene load_steps=14 format=3 uid="uid://b3okoqvlqt55a"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
 [ext_resource type="PackedScene" uid="uid://cwjthvhkaqote" path="res://scenes/player.tscn" id="2_ttseq"]
 [ext_resource type="Shader" path="res://shaders/scrolling_bg.gdshader" id="2_yeo1y"]
 [ext_resource type="Texture2D" uid="uid://c4m2ljq1ynnik" path="res://assets/background/Brown.png" id="4_prfr6"]
+[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="6_6hpda"]
+[ext_resource type="Texture2D" uid="uid://cealdlq531836" path="res://assets/character/ninja_frog.png" id="6_rgcns"]
+[ext_resource type="Texture2D" uid="uid://b4cgytxlrs4ak" path="res://assets/other/End.png" id="8_pxxjb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdvse"]
 shader = ExtResource("2_yeo1y")
@@ -459,6 +462,12 @@ texture = ExtResource("2_4ntks")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sehxt")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lflqx"]
+shader = ExtResource("6_6hpda")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aadme"]
+shader = ExtResource("6_6hpda")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -480,3 +489,15 @@ layer_0/tile_data = PackedInt32Array(655361, 458752, 4, 655362, 458752, 4, 65536
 
 [node name="Player" parent="." instance=ExtResource("2_ttseq")]
 position = Vector2(575, 314)
+
+[node name="Grayscale" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lflqx")
+position = Vector2(666, 422)
+scale = Vector2(3, 3)
+texture = ExtResource("6_rgcns")
+
+[node name="End" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_aadme")
+position = Vector2(1108, 383)
+scale = Vector2(3, 3)
+texture = ExtResource("8_pxxjb")
