@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b3okoqvlqt55a"]
+[gd_scene load_steps=34 format=3 uid="uid://b3okoqvlqt55a"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b7rqfa05aj7c8" path="res://icon.svg" id="11_of0yg"]
 [ext_resource type="Shader" path="res://shaders/dissolve.gdshader" id="12_kkxo1"]
 [ext_resource type="Texture2D" uid="uid://jgyxm4826yuh" path="res://assets/other/Rock Head.png" id="13_1o257"]
+[ext_resource type="Shader" path="res://shaders/masking.gdshader" id="14_q3shx"]
+[ext_resource type="Texture2D" uid="uid://daw35yrqwa2a5" path="res://assets/other/Spike Head.png" id="15_smouq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdvse"]
 shader = ExtResource("2_yeo1y")
@@ -535,6 +537,18 @@ _data = {
 "dissolve": SubResource("Animation_pogu1")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rj2hv"]
+frequency = 0.0029
+offset = Vector3(-1000, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_870e7"]
+seamless = true
+noise = SubResource("FastNoiseLite_rj2hv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyla3"]
+shader = ExtResource("14_q3shx")
+shader_parameter/mask_tex = SubResource("NoiseTexture2D_870e7")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -594,3 +608,9 @@ libraries = {
 "": SubResource("AnimationLibrary_sgelw")
 }
 autoplay = "dissolve"
+
+[node name="Masking" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jyla3")
+position = Vector2(945, 201)
+scale = Vector2(4, 4)
+texture = ExtResource("15_smouq")
