@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3okoqvlqt55a"]
+[gd_scene load_steps=18 format=3 uid="uid://b3okoqvlqt55a"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="6_6hpda"]
 [ext_resource type="Texture2D" uid="uid://cealdlq531836" path="res://assets/character/ninja_frog.png" id="6_rgcns"]
 [ext_resource type="Texture2D" uid="uid://b4cgytxlrs4ak" path="res://assets/other/End.png" id="8_pxxjb"]
+[ext_resource type="Shader" path="res://shaders/map_to_gradient.gdshader" id="9_uvngr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdvse"]
 shader = ExtResource("2_yeo1y")
@@ -468,6 +469,17 @@ shader = ExtResource("6_6hpda")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aadme"]
 shader = ExtResource("6_6hpda")
 
+[sub_resource type="Gradient" id="Gradient_ow5pu"]
+offsets = PackedFloat32Array(0, 0.152738, 0.394813, 0.648415)
+colors = PackedColorArray(0, 0, 0, 1, 4.23551e-06, 0.904456, 0.819172, 1, 0.850434, 0, 0.258287, 1, 1, 0.368627, 0.0509804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgg2q"]
+gradient = SubResource("Gradient_ow5pu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40g5i"]
+shader = ExtResource("9_uvngr")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_qgg2q")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -499,5 +511,11 @@ texture = ExtResource("6_rgcns")
 [node name="End" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_aadme")
 position = Vector2(1108, 383)
+scale = Vector2(3, 3)
+texture = ExtResource("8_pxxjb")
+
+[node name="Gradient" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_40g5i")
+position = Vector2(1247, 383)
 scale = Vector2(3, 3)
 texture = ExtResource("8_pxxjb")
