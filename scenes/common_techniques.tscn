@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3okoqvlqt55a"]
+[gd_scene load_steps=21 format=3 uid="uid://b3okoqvlqt55a"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cealdlq531836" path="res://assets/character/ninja_frog.png" id="6_rgcns"]
 [ext_resource type="Texture2D" uid="uid://b4cgytxlrs4ak" path="res://assets/other/End.png" id="8_pxxjb"]
 [ext_resource type="Shader" path="res://shaders/map_to_gradient.gdshader" id="9_uvngr"]
+[ext_resource type="Shader" path="res://shaders/screen_reading.gdshader" id="10_mnoa7"]
+[ext_resource type="Texture2D" uid="uid://b7rqfa05aj7c8" path="res://icon.svg" id="11_of0yg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdvse"]
 shader = ExtResource("2_yeo1y")
@@ -480,6 +482,9 @@ gradient = SubResource("Gradient_ow5pu")
 shader = ExtResource("9_uvngr")
 shader_parameter/gradient_texture = SubResource("GradientTexture2D_qgg2q")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5q5x"]
+shader = ExtResource("10_mnoa7")
+
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
 
@@ -519,3 +524,10 @@ material = SubResource("ShaderMaterial_40g5i")
 position = Vector2(1247, 383)
 scale = Vector2(3, 3)
 texture = ExtResource("8_pxxjb")
+
+[node name="ScreenReading" type="Sprite2D" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_l5q5x")
+position = Vector2(571, 275)
+scale = Vector2(3.05469, 3.05469)
+texture = ExtResource("11_of0yg")
