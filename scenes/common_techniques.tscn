@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b3okoqvlqt55a"]
+[gd_scene load_steps=41 format=3 uid="uid://b3okoqvlqt55a"]
 
 [ext_resource type="Script" path="res://scripts/common_techniques.gd" id="1_0ugy3"]
 [ext_resource type="Texture2D" uid="uid://dw27ks2iy6r18" path="res://assets/other/Terrain (16x16).png" id="2_4ntks"]
@@ -15,11 +15,37 @@
 [ext_resource type="Texture2D" uid="uid://jgyxm4826yuh" path="res://assets/other/Rock Head.png" id="13_1o257"]
 [ext_resource type="Shader" path="res://shaders/masking.gdshader" id="14_q3shx"]
 [ext_resource type="Texture2D" uid="uid://daw35yrqwa2a5" path="res://assets/other/Spike Head.png" id="15_smouq"]
+[ext_resource type="Shader" path="res://shaders/distortion.gdshader" id="16_kk7bj"]
+[ext_resource type="Texture2D" uid="uid://cb4601jlpf57d" path="res://assets/character/virtual_guy/Jump (32x32).png" id="17_h4mki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdvse"]
 shader = ExtResource("2_yeo1y")
 shader_parameter/tiling = Vector2(10, 10)
 shader_parameter/offset = Vector2(0.4, 0.4)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mntc8"]
+seed = 1
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b6bvt"]
+seamless = true
+noise = SubResource("FastNoiseLite_mntc8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kdxjx"]
+frequency = 0.0033
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b4scj"]
+seamless = true
+noise = SubResource("FastNoiseLite_kdxjx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2oyy"]
+shader = ExtResource("16_kk7bj")
+shader_parameter/offset1 = Vector2(0.1, 0.1)
+shader_parameter/offset2 = Vector2(0.3, 0.3)
+shader_parameter/mix_pct = 0.572
+shader_parameter/distortion_strength = 0.023
+shader_parameter/noise_tex1 = SubResource("NoiseTexture2D_b6bvt")
+shader_parameter/noise_tex2 = SubResource("NoiseTexture2D_b4scj")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sehxt"]
 texture = ExtResource("2_4ntks")
@@ -561,6 +587,17 @@ material = SubResource("ShaderMaterial_cdvse")
 position = Vector2(576, 416)
 scale = Vector2(18.3438, 18.3438)
 texture = ExtResource("4_prfr6")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Distortion" type="Sprite2D" parent="CanvasLayer2"]
+z_index = 999
+texture_repeat = 2
+material = SubResource("ShaderMaterial_r2oyy")
+position = Vector2(606, 437)
+scale = Vector2(41.1523, 27.4844)
+texture = ExtResource("17_h4mki")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
