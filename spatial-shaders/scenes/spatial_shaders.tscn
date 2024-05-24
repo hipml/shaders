@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=10 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
 [ext_resource type="Shader" path="res://shaders/spatial_shaders.gdshader" id="3_vu18o"]
+[ext_resource type="Texture2D" uid="uid://dq50v6s4drwd1" path="res://icon.svg" id="4_y83vq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -17,6 +18,7 @@ sky = SubResource("Sky_joj37")
 render_priority = 0
 shader = ExtResource("3_vu18o")
 shader_parameter/sphere_color = Vector3(1, 1, 1)
+shader_parameter/my_texture = ExtResource("4_y83vq")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5gdlg"]
 material = SubResource("ShaderMaterial_itbom")
@@ -35,4 +37,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.85299)
 move_speed = 5.0
 
 [node name="SphereExample" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("SphereMesh_5gdlg")
