@@ -1,4 +1,5 @@
 shader_type spatial;
+// render_mode diffuse_toon, specular_toon;
 
 uniform vec3 input_color: source_color;
 uniform float metallic_pct:hint_range(0.0, 1.0) = 0.0;

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://lg3n8vkn5qi4"]
+[gd_scene load_steps=18 format=3 uid="uid://lg3n8vkn5qi4"]
 
 [ext_resource type="Script" path="res://scripts/spatial_shaders.gd" id="1_db346"]
 [ext_resource type="PackedScene" uid="uid://twg0tri4g6hr" path="res://scenes/camera_controller.tscn" id="1_p4cbf"]
 [ext_resource type="Shader" path="res://shaders/spatial_shaders.gdshader" id="3_vu18o"]
 [ext_resource type="Texture2D" uid="uid://dq50v6s4drwd1" path="res://icon.svg" id="4_y83vq"]
 [ext_resource type="Shader" path="res://shaders/pbr.gdshader" id="5_klg84"]
+[ext_resource type="Shader" uid="uid://csndq3sl6dred" path="res://shaders/standardmaterial3d.tres" id="6_uhyhi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7jfiy"]
 
@@ -34,6 +35,33 @@ shader_parameter/roughness_pct = 0.333
 [sub_resource type="SphereMesh" id="SphereMesh_xwklm"]
 material = SubResource("ShaderMaterial_on5sy")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77pil"]
+render_priority = 0
+shader = ExtResource("5_klg84")
+shader_parameter/input_color = Color(0.283814, 0.532751, 0.585153, 1)
+shader_parameter/metallic_pct = 0.42
+shader_parameter/roughness_pct = 0.355
+
+[sub_resource type="SphereMesh" id="SphereMesh_g1chp"]
+material = SubResource("ShaderMaterial_77pil")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gj78j"]
+render_priority = 0
+shader = ExtResource("6_uhyhi")
+shader_parameter/albedo = Color(0.39355, 0.98169, 0.61137, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pi7u"]
+material = SubResource("ShaderMaterial_gj78j")
+
 [node name="SpatialShaders" type="Node3D"]
 script = ExtResource("1_db346")
 
@@ -54,3 +82,11 @@ mesh = SubResource("SphereMesh_5gdlg")
 [node name="SphereExample2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, 0)
 mesh = SubResource("SphereMesh_xwklm")
+
+[node name="SphereExample3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 0)
+mesh = SubResource("SphereMesh_g1chp")
+
+[node name="SphereExample4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 0, 0)
+mesh = SubResource("SphereMesh_8pi7u")
