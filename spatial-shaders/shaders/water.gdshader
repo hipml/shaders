@@ -5,7 +5,7 @@ uniform sampler2D normalmap2_tex: repeat_enable, filter_linear;
 
 uniform vec3 albedo: source_color;
 uniform float metallic:hint_range(0.0, 1.0) = 0.0;
-uniform float roughness:hint_range(0.0, 1.0) = 0.01;
+uniform float roughness:hint_range(0.0, 1.0) = 0.0;
 
 uniform vec2 direction1 = vec2(1.0, 0.0);
 uniform float scroll_speed1: hint_range(0.0, 1.0) = 0.03;

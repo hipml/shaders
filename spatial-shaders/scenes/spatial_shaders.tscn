@@ -99,9 +99,9 @@ shader_parameter/albedo = Color(0, 0.425231, 0.498375, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.0
 shader_parameter/direction1 = Vector2(1, 0)
-shader_parameter/scroll_speed1 = 0.066
-shader_parameter/direction2 = Vector2(1, 0)
-shader_parameter/scroll_speed2 = 0.1
+shader_parameter/scroll_speed1 = 0.03
+shader_parameter/direction2 = Vector2(0, 1)
+shader_parameter/scroll_speed2 = 0.01
 shader_parameter/normalmap_tex = SubResource("NoiseTexture2D_8dnui")
 shader_parameter/normalmap2_tex = SubResource("NoiseTexture2D_ccg3i")
 
